@@ -96,7 +96,7 @@ cp ${TOOLCHAIN_SYSROOT}/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/.
 sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 660 dev/console c 5 1
 # TODO: Clean and build the writer utility
-AELD_DIR=/home/ubuntu/Advanced_Embedded_Linux_Development_Specialization/course1/assignment-1-andrecchia
+AELD_DIR=`dirname $0`
 cd ${AELD_DIR}/finder-app
 make clean
 make CROSS_COMPILE=${CROSS_COMPILE}
