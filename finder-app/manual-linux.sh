@@ -96,20 +96,19 @@ cp ${TOOLCHAIN_SYSROOT}/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64/.
 sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 660 dev/console c 5 1
 # TODO: Clean and build the writer utility
-AELD_FINDER_APP_DIR=`realpath $(dirname $0)`
-cd ${AELD_FINDER_APP_DIR}
+cd ${FINDER_APP_DIR}
 make clean
 make CROSS_COMPILE=${CROSS_COMPILE}
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
 cd ${OUTDIR}
-cp ${AELD_FINDER_APP_DIR}/writer ${OUTDIR}/rootfs/home/.
-cp ${AELD_FINDER_APP_DIR}/finder.sh ${OUTDIR}/rootfs/home/.
-cp ${AELD_FINDER_APP_DIR}/finder-test.sh ${OUTDIR}/rootfs/home/.
-cp ${AELD_FINDER_APP_DIR}/autorun-qemu.sh ${OUTDIR}/rootfs/home/.
+cp ${FINDER_APP_DIR}/writer ${OUTDIR}/rootfs/home/.
+cp ${FINDER_APP_DIR}/finder.sh ${OUTDIR}/rootfs/home/.
+cp ${FINDER_APP_DIR}/finder-test.sh ${OUTDIR}/rootfs/home/.
+cp ${FINDER_APP_DIR}/autorun-qemu.sh ${OUTDIR}/rootfs/home/.
 mkdir -p ${OUTDIR}/rootfs/home/conf
-cp ${AELD_FINDER_APP_DIR}/conf/*.txt ${OUTDIR}/rootfs/home/conf/.
+cp ${FINDER_APP_DIR}/conf/*.txt ${OUTDIR}/rootfs/home/conf/.
 
 sed -i 's#\.\./conf/assignment.txt#conf/assignment.txt#g' ${OUTDIR}/rootfs/home/finder-test.sh
 # TODO: Chown the root directory
